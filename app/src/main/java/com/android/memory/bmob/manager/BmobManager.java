@@ -1,4 +1,4 @@
-package com.android.memory.base;
+package com.android.memory.bmob.manager;
 
 import android.content.Context;
 import android.util.Log;
