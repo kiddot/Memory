@@ -29,7 +29,7 @@ public class DialogFragmentHelper {
     /**
      * 默认的风格
      */
-    private static int mDialogStyle = R.style;
+    private static int mDialogStyle = R.style.dialog;
 
     /**
      * @param styleId StyleId可以修改弹框风格
@@ -67,12 +67,12 @@ public class DialogFragmentHelper {
         return showProgress(manager, mes, true, null);
     }
 
-    public static MSCommonDialogFragment showProgress(FragmentManager manager, String mes, boolean cancelable) {
+    public static CommonDialogFragment showProgress(FragmentManager manager, String mes, boolean cancelable) {
         return showProgress(manager, mes, cancelable, null);
     }
 
-    public static MSCommonDialogFragment showProgress(FragmentManager manager, final String mes, boolean cancelable, MSCommonDialogFragment.OnDialogCancelListener cListener) {
-        MSCommonDialogFragment dialog = MSCommonDialogFragment.newInstance(new MSCommonDialogFragment.OnCallDialog() {
+    public static CommonDialogFragment showProgress(FragmentManager manager, final String mes, boolean cancelable, CommonDialogFragment.OnDialogCancelListener cListener) {
+        CommonDialogFragment dialog = CommonDialogFragment.newInstance(new CommonDialogFragment.OnCallDialog() {
             @Override
             public Dialog getDialog(final Context context) {
                 ProgressDialog pd = new ProgressDialog(context, PROGRESS_THEME);
@@ -99,9 +99,9 @@ public class DialogFragmentHelper {
         showTips(manager, mes, cancelable, null);
     }
 
-    public static void showTips(FragmentManager manager, final String mes, boolean cancelable, MSCommonDialogFragment.OnDialogCancelListener cListener) {
+    public static void showTips(FragmentManager manager, final String mes, boolean cancelable, CommonDialogFragment.OnDialogCancelListener cListener) {
 
-        MSCommonDialogFragment dialog = MSCommonDialogFragment.newInstance(new MSCommonDialogFragment.OnCallDialog() {
+        CommonDialogFragment dialog = CommonDialogFragment.newInstance(new CommonDialogFragment.OnCallDialog() {
             @Override
             public Dialog getDialog(final Context context) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context, TIPS_THEME);
@@ -124,8 +124,8 @@ public class DialogFragmentHelper {
         return null;
     }
 
-    public static void showConfirmDialog(FragmentManager manager, final String msg, final IDialogResultListener<Integer> dListener, boolean cancelable, MSCommonDialogFragment.OnDialogCancelListener cListener) {
-        MSCommonDialogFragment dialog = MSCommonDialogFragment.newInstance(new MSCommonDialogFragment.OnCallDialog() {
+    public static void showConfirmDialog(FragmentManager manager, final String msg, final IDialogResultListener<Integer> dListener, boolean cancelable, CommonDialogFragment.OnDialogCancelListener cListener) {
+        CommonDialogFragment dialog = CommonDialogFragment.newInstance(new CommonDialogFragment.OnCallDialog() {
             @Override
             public Dialog getDialog(final Context context) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context, CONFIRM_THEME);
@@ -159,7 +159,7 @@ public class DialogFragmentHelper {
     private static final String LIST_TAG = TAG_HEAD + ":list";
 
     public static DialogFragment showListDialog(FragmentManager manager, final String title, final String[] items, final IDialogResultListener<Integer> dListener, boolean cancelable) {
-        MSCommonDialogFragment dialog = MSCommonDialogFragment.newInstance(new MSCommonDialogFragment.OnCallDialog() {
+        CommonDialogFragment dialog = CommonDialogFragment.newInstance(new CommonDialogFragment.OnCallDialog() {
             @Override
             public Dialog getDialog(final Context context) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context, LIST_THEME);
@@ -186,7 +186,7 @@ public class DialogFragmentHelper {
     private static final String DATE_TAG = TAG_HEAD + ":list";
 
     public static DialogFragment showDataDialog(FragmentManager manager, final String title, final Calendar calendar, final IDialogResultListener<Calendar> dListener, final boolean cancelable) {
-        MSCommonDialogFragment dialog = MSCommonDialogFragment.newInstance(new MSCommonDialogFragment.OnCallDialog() {
+        CommonDialogFragment dialog = CommonDialogFragment.newInstance(new CommonDialogFragment.OnCallDialog() {
             @Override
             public Dialog getDialog(final Context context) {
                 final DatePickerDialog dateDialog = new DatePickerDialog(context, DATE_THEME, new DatePickerDialog.OnDateSetListener() {
@@ -220,7 +220,7 @@ public class DialogFragmentHelper {
     private static final String TIME_TAG = TAG_HEAD + ":time";
 
     public static void showTimeDialog(FragmentManager manager, final String title, final Calendar calendar, final IDialogResultListener<Calendar> dListener, final boolean cancelable) {
-        MSCommonDialogFragment dialog = MSCommonDialogFragment.newInstance(new MSCommonDialogFragment.OnCallDialog() {
+        CommonDialogFragment dialog = CommonDialogFragment.newInstance(new CommonDialogFragment.OnCallDialog() {
             @Override
             public Dialog getDialog(final Context context) {
                 final TimePickerDialog dateDialog = new TimePickerDialog(context, TIME_THEME, new TimePickerDialog.OnTimeSetListener() {
@@ -255,7 +255,7 @@ public class DialogFragmentHelper {
     private static final String INSERT_TAG = TAG_HEAD + ":insert";
 
     public static void showInsertDialog(FragmentManager manager, final String title, final IDialogResultListener<String> dListener, boolean cancelable) {
-        MSCommonDialogFragment dialog = MSCommonDialogFragment.newInstance(new MSCommonDialogFragment.OnCallDialog() {
+        CommonDialogFragment dialog = CommonDialogFragment.newInstance(new CommonDialogFragment.OnCallDialog() {
             @Override
             public Dialog getDialog(final Context context) {
                 final EditText et = new EditText(context);
@@ -284,7 +284,7 @@ public class DialogFragmentHelper {
     private static final String PASSWORD_INSERT_TAG = TAG_HEAD + ":insert";
 
     public static void showPasswordInsertDialog(FragmentManager manager, final String title, final IDialogResultListener<String> dListener, boolean cancelable) {
-        MSCommonDialogFragment dialog = MSCommonDialogFragment.newInstance(new MSCommonDialogFragment.OnCallDialog() {
+        CommonDialogFragment dialog = CommonDialogFragment.newInstance(new CommonDialogFragment.OnCallDialog() {
             @Override
             public Dialog getDialog(final Context context) {
                 final EditText et = new EditText(context);
@@ -321,5 +321,14 @@ public class DialogFragmentHelper {
         }
     });
     return ad;*/
+
+    /**
+     * 用于DialogFragmentHelper与逻辑层之间进行数据监听
+     * @param <T>
+     */
+
+    public interface IDialogResultListener<T> {
+        void onDataResult(T result);
+    }
 
 }

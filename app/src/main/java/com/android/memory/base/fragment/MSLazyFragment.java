@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 /**
- * import by Hans
  * @source https://github.com/LuckyJayce/ViewPagerIndicator/blob/master/library/src/main/java/com/shizhefei/fragment/LazyFragment.java
  *
  * <h1>懒加载Fragment</h1> 只有创建并显示的时候才会调用onCreateViewLazy方法<br>

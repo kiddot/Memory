@@ -2,8 +2,7 @@ package com.android.memory.base.dao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.changelcai.mothership.android.Log;
+import android.util.Log;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -76,7 +75,7 @@ public abstract class DaoManager implements DaoService {
         try {
             mDaoConfig.checkUpdate(daoSession, daoMaster.getDatabase().getVersion(), daoMaster.getSchemaVersion());
         } catch (Exception e) {
-            Log.e("DaoManager", "手动升级数据库失败!!!!");
+            Log.d("DaoManager", "手动升级数据库失败!!!!");
         }
     }
 

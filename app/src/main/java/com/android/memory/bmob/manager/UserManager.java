@@ -5,4 +5,5 @@ package com.android.memory.bmob.manager;
  */
 
 public class UserManager {
+
 }

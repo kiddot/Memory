@@ -3,6 +3,7 @@ package com.android.memory.base.util;
 import android.content.Context;
 
 /**
+ *
  * Created by kiddo on 17-1-10.
  */
 

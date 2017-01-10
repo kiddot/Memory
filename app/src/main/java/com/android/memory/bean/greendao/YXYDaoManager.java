@@ -3,9 +3,10 @@ package com.android.memory.bean.greendao;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.topview.xxt.base.dao.DaoManager;
-import com.topview.xxt.base.dao.OnSQLiteDatabaseListener;
-import com.topview.xxt.bean.DaoMaster;
+
+import com.android.memory.base.dao.DaoManager;
+import com.android.memory.base.dao.OnSQLiteDatabaseListener;
+import com.android.memory.bean.DaoMaster;
 
 import de.greenrobot.dao.AbstractDaoMaster;
 

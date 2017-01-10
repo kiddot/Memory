@@ -5,4 +5,9 @@ package com.android.memory.login.register;
  */
 
 public class RegisterDelegate {
+    private static final String TAG = RegisterDelegate.class.getSimpleName();
+
+    public void register(){
+
+    }
 }

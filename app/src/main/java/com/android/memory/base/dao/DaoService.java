@@ -7,7 +7,7 @@ import de.greenrobot.dao.query.QueryBuilder;
 
 /**
  * 基于GreenDao的数据层服务接口
- * Created by yzw on 2016/7/11 0011.
+ * Created on 2017/1/9
  */
 public interface DaoService {
 
