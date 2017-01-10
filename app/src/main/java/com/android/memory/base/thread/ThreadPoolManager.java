@@ -22,6 +22,23 @@ public class ThreadPoolManager implements ThreadPoolInterface {
 
     public static Handler handler = new Handler(Looper.getMainLooper());
 
+    public static ThreadPoolManager mThreadPoolManager;
+
+    /**
+     * 单利模式
+     * @return
+     */
+    public static ThreadPoolManager getInstance() {
+        if (mThreadPoolManager == null) {
+            synchronized (ThreadPoolManager.class) {
+                if (mThreadPoolManager == null) {
+                    mThreadPoolManager = new ThreadPoolManager();
+                }
+            }
+        }
+        return mThreadPoolManager;
+    }
+
 
     @Override
     public <T> void addTask(final Tasker<T> tasker) {
