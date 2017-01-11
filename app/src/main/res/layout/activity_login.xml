@@ -88,7 +88,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/forget_password"
+                android:id="@+id/register_account"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"

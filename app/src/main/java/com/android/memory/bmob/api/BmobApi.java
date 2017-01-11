@@ -29,7 +29,7 @@ public class BmobApi {
     /**
      * 由于外面是链式进行调用，虽然不太好，但是可以成功，设置容量为1，避免出现获取值混乱
      */
-    private ArrayBlockingQueue<Boolean> mBlockingQueue ;
+    private ArrayBlockingQueue<Object> mBlockingQueue ;
 
 
     public static BmobApi getInstance() {
@@ -44,7 +44,7 @@ public class BmobApi {
     }
 
     public BmobApi(){
-        mBlockingQueue = new ArrayBlockingQueue<>(1);
+        mBlockingQueue = new ArrayBlockingQueue<>(1 , true);//必须使用公平锁
     }
 
     /**
@@ -72,21 +72,28 @@ public class BmobApi {
      * 将注册加一层装饰，方便外面的调用，减少回调带来的麻烦
      * @return
      */
-    public boolean signUp(_User userInfo){
-        boolean succeed = false;
-        signUpUser(userInfo, new OnResultBack() {
+    public Object signUp(String account , String password){
+        _User user = new _User();
+        user.setUsername(account);
+        user.setPassword(password);
+        signUpUser(user, new OnResultBack() {
             @Override
             public void onResult(boolean success, Object object) {
-                mBlockingQueue.add(success);
+                if (success){
+                    mBlockingQueue.add(object);
+                }else {
+                    mBlockingQueue.add(null);
+                }
             }
         });
         try {
-            succeed = mBlockingQueue.take();
+            user = (_User) mBlockingQueue.take();
+            Log.d(TAG, "signUp: 拿出了"+ user);
         } catch (InterruptedException e) {
             e.printStackTrace();
             Log.d(TAG, "signUp: 当前阻塞队列被终止");
         }
-        return succeed;
+        return user;
     }
 
     /**
@@ -94,7 +101,7 @@ public class BmobApi {
      *
      * @param userInfo
      */
-    public void loginUser(_User userInfo, final OnResultBack callback) {
+    private void loginUser(_User userInfo, final OnResultBack callback) {
         userInfo.login(new SaveListener<_User>() {
             @Override
             public void done(_User userInfo, BmobException e) {
@@ -113,21 +120,24 @@ public class BmobApi {
      * 将登录加一层装饰，方便外面的调用，减少回调带来的麻烦
      * @return
      */
-    public boolean login(_User userInfo){
-        boolean succeed = false;
-        loginUser(userInfo, new OnResultBack() {
+    public Object login(String account , String password){
+        _User user = new _User();
+        user.setUsername(account);
+        user.setPassword(password);
+        loginUser(user, new OnResultBack() {
             @Override
             public void onResult(boolean success, Object object) {
-                mBlockingQueue.add(success);
+                mBlockingQueue.add(object);
             }
         });
         try {
-            succeed = mBlockingQueue.take();
+            user = (_User) mBlockingQueue.take();
+            Log.d(TAG, "login: 拿出了"+ user);
         } catch (InterruptedException e) {
             e.printStackTrace();
-            Log.d(TAG, "signUp: 当前阻塞队列被终止");
+            Log.d(TAG, "login: 当前阻塞队列被终止");
         }
-        return succeed;
+        return user;
     }
 
     /**

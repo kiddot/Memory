@@ -6,11 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.android.memory.base.thread.ThreadPoolConst;
 import com.android.memory.base.thread.ThreadPoolManager;
+import com.android.memory.base.util.HandleUtil;
+import com.android.memory.base.util.Toastor;
 
 import java.util.concurrent.Executor;
 
 import bolts.Task;
 import butterknife.ButterKnife;
+
+import static com.android.memory.MemoryApplication.getContext;
 
 /**
  *
@@ -23,6 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected static Executor sHTTPExecutor = ThreadPoolManager.getInstance().getThreadPool(ThreadPoolConst.THREAD_TYPE_SIMPLE_HTTP);
     protected static Executor sWORKExecutor = ThreadPoolManager.getInstance().getThreadPool(ThreadPoolConst.THREAD_TYPE_WORK);
     protected static Executor sUIExecutor = Task.UI_THREAD_EXECUTOR;
+    private Toastor mToast;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         setContentView(getLayoutId());
         ButterKnife.bind(this);
+        if (mToast == null && getContext() != null) mToast = new Toastor(getContext());
         init(savedInstanceState);
     }
 
@@ -44,5 +50,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     * 初始化
     * */
     protected abstract void init(Bundle savedInstanceState);
+
+    protected void showToast(final String content) {
+        HandleUtil.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (getContext() == null) return;
+                if (mToast == null) mToast = new Toastor(getContext());
+                mToast.showToast(content);
+            }
+        });
+    }
 
 }
