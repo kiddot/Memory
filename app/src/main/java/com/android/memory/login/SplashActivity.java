@@ -16,11 +16,14 @@ import com.android.memory.login.login.LoginActivity;
 public class SplashActivity extends AppCompatActivity {
 
     private static final int WHAT_START_LOGIN = 0;
+    private static final int SHOW_TIME_MIN = 1500;// 最小显示时间
+    private long mStartTime;// 开始时间
     private Handler mHandler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mStartTime = System.currentTimeMillis();//记录开始时间，
         initHandler();
         new Thread() {
             @Override
@@ -35,7 +38,13 @@ public class SplashActivity extends AppCompatActivity {
      */
     private void init() {
         initBmob();
-        mHandler.sendEmptyMessage(WHAT_START_LOGIN);
+        long loadingTime = System.currentTimeMillis() - mStartTime;// 计算一下总共花费的时间
+        if (loadingTime < SHOW_TIME_MIN) {// 如果比最小显示时间还短，就延时进入MainActivity，否则直接进入
+            mHandler.sendEmptyMessageDelayed(WHAT_START_LOGIN, SHOW_TIME_MIN
+                    - loadingTime);
+        } else {
+            mHandler.sendEmptyMessage(WHAT_START_LOGIN);
+        }
     }
 
     private void initHandler() {
@@ -46,6 +55,9 @@ public class SplashActivity extends AppCompatActivity {
                     case WHAT_START_LOGIN:
                         startLoginActivity();
                         finish();
+
+
+
                         break;
                 }
             }

@@ -29,4 +29,22 @@
         <item name="android:backgroundDimEnabled">false</item><!--模糊-->
     </style>
 
+    <style name="TranslucentTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">false</item>
+        //设置背景透明
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="SplashActivityTheme" parent="TranslucentTheme">
+        <item name="android:windowBackground">@mipmap/splash</item>
+    </style>
+
+
+
+
 </resources>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:background="@mipmap/activity_login"
+    android:theme="@style/NoTitleBar.Fullscreen"
+    >
+
+    <include layout="@layout/part_common_toolbar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/common_toolbar"
+        android:layout_alignTop="@+id/common_toolbar"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingTop="2dp"
+        android:text="账号注册"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        />
+
+
+    <EditText
+        android:background="@mipmap/common_input"
+        android:id="@+id/register_et_phone"
+        android:layout_width="fill_parent"
+        android:layout_height="45dip"
+        android:layout_margin="20dip"
+        android:layout_below="@id/common_toolbar"
+        android:drawableStart="@mipmap/common_account"
+        android:drawablePadding="15dp"
+        android:hint="手机"
+        android:inputType="text"
+        android:maxLines="1"
+        android:maxLength="16"
+        android:paddingLeft="13.0dip"
+        android:textColorHint="#bebebe" />
+
+    <TextView
+        android:id="@+id/register_tv_phone"
+        android:layout_width="match_parent"
+        android:layout_height="44.0dip"
+        android:layout_below="@id/register_et_phone"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="-1dp"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/register_warning"
+        android:drawablePadding="13dp"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="13dp"
+        android:singleLine="true"
+        android:text="请输入正确手机号码"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:visibility="gone"
+        />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="45dip"
+        android:layout_margin="20dip"
+        android:id="@+id/register_et_psw"
+        android:layout_below="@id/register_tv_phone"
+        android:layout_marginTop="-1dp"
+        android:background="@mipmap/common_input"
+        android:drawableLeft="@mipmap/login_psw"
+        android:hint="密码"
+        android:drawablePadding="15dp"
+        android:paddingLeft="13.0dip"
+        android:inputType="textPassword"
+        android:maxLength="16"
+        android:textColorHint="#bebebe"
+        />
+
+    <TextView
+        android:id="@+id/register_tv_psw"
+        android:layout_width="match_parent"
+        android:layout_height="44.0dip"
+        android:layout_below="@id/register_et_psw"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="-1dp"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/register_warning"
+        android:drawablePadding="13dp"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="13dp"
+        android:singleLine="true"
+        android:text="仅支持英文、数字、下划线"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:visibility="gone"
+        />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="45dip"
+        android:layout_margin="20dip"
+        android:id="@+id/register_et_captcha"
+        android:layout_below="@id/register_tv_psw"
+        android:layout_marginTop="-1dp"
+        android:paddingLeft="13.0dip"
+        android:background="@mipmap/common_input"
+        android:drawableLeft="@mipmap/register_message"
+        android:hint="   请输入验证码"
+        android:inputType="number"
+        android:maxLength="8"
+        android:textColorHint="#bebebe"
+        />
+
+    <Button
+        android:id="@+id/register_btn_captcha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/register_et_captcha"
+        android:layout_alignRight="@id/register_et_captcha"
+        android:layout_alignTop="@id/register_et_captcha"
+        android:layout_marginBottom="7dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/common_button_send_otp"
+        android:enabled="false"
+        android:text="发送验证码"
+        android:onClick="sendVerificationCode"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="45dip"
+        android:layout_margin="20dip"
+        android:background="@mipmap/common_input"
+        android:id="@+id/register_btn_register"
+        android:layout_below="@+id/register_et_captcha"
+        android:text="注册"
+        android:onClick="register"
+        android:textColorHint="#bebebe"
+        />
+</RelativeLayout>

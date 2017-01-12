@@ -35,6 +35,7 @@
                 android:hint="电话号码/QQ/邮箱"
                 android:inputType="text"
                 android:maxLines="1"
+                android:paddingLeft="13.0dip"
                 android:textColorHint="#bebebe" />
 
             <!--android:background="@drawable/edit_down"-->
@@ -50,6 +51,7 @@
                 android:inputType="textPassword"
                 android:password="true"
                 android:maxLines="1"
+                android:paddingLeft="13.0dip"
                 android:textColorHint="#bebebe" />
 
 

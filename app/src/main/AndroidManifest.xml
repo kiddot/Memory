@@ -34,7 +34,9 @@
         android:name=".MemoryApplication"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".login.SplashActivity">
+        <activity android:name=".login.SplashActivity"
+            android:theme="@style/SplashActivityTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"/>
                 <action android:name="android.intent.action.MAIN"/>
@@ -43,6 +45,8 @@
 
         <activity android:name=".login.login.LoginActivity"/>
         <activity android:name=".login.register.RegisterActivity"/>
+
+        <activity android:name=".main.MainActivity"/>
 
     </application>
 
