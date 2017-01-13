@@ -134,6 +134,24 @@
         />
 
     <Button
+        android:id="@+id/register_btn_captcha_send_ed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/register_et_captcha"
+        android:layout_alignRight="@id/register_et_captcha"
+        android:layout_alignTop="@id/register_et_captcha"
+        android:layout_marginBottom="7dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/common_button_send_otp"
+        android:enabled="false"
+        android:text=""
+        android:onClick="sendVerificationCode"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        />
+
+    <Button
         android:layout_width="fill_parent"
         android:layout_height="45dip"
         android:layout_margin="20dip"
